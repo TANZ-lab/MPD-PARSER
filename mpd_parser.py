@@ -167,8 +167,11 @@ if audio_list != []:
     for audio in audio_list:
         lang_id = audio['ID'].split("/")
 
-        if "audio" in lang_id:
-            audio_language = lang_id[1]
+        if lang_id and "audio" in lang_id[0]:
+            try:
+                audio_language = lang_id[0].split('_')[1].split('=')[0]
+            except:
+                audio_language = lang_id[1]
         else:
             audio_language = 'und'
 
